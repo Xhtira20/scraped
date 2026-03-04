@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"net/url"
 	"os"
 	"strings"
 
@@ -59,8 +60,35 @@ func NewRootCmd() *cobra.Command {
 	return cmd
 }
 
+// validateURL normalizes and validates a URL string.
+// If the input has no scheme but contains a ".", https:// is assumed.
+// Returns the normalized URL or an error if the URL is invalid.
+func validateURL(raw string) (string, error) {
+	if !strings.Contains(raw, "://") && strings.Contains(raw, ".") {
+		raw = "https://" + raw
+	}
+	u, err := url.Parse(raw)
+	if err != nil {
+		return "", fmt.Errorf("invalid URL %q: %w", raw, err)
+	}
+	if u.Scheme != "http" && u.Scheme != "https" {
+		return "", fmt.Errorf("invalid URL %q: scheme must be http or https", raw)
+	}
+	if u.Host == "" {
+		return "", fmt.Errorf("invalid URL %q: missing host", raw)
+	}
+	hostname := u.Hostname()
+	if hostname != "localhost" && !strings.Contains(hostname, ".") {
+		return "", fmt.Errorf("invalid URL %q: host %q has no TLD", raw, hostname)
+	}
+	return u.String(), nil
+}
+
 func run(ctx context.Context, cfg *config, args []string) error {
-	urls := collectURLs(args)
+	urls, err := collectURLs(args)
+	if err != nil {
+		return err
+	}
 	if len(urls) == 0 {
 		return fmt.Errorf("no URLs provided; pass them as arguments or pipe via stdin")
 	}
@@ -113,9 +141,9 @@ func stdoutIsTTY() bool {
 	return fi.Mode()&os.ModeCharDevice != 0
 }
 
-func collectURLs(args []string) []string {
-	urls := make([]string, 0, len(args))
-	urls = append(urls, args...)
+func collectURLs(args []string) ([]string, error) {
+	raw := make([]string, 0, len(args))
+	raw = append(raw, args...)
 
 	// Read from stdin if piped (not a terminal).
 	stat, _ := os.Stdin.Stat()
@@ -124,10 +152,19 @@ func collectURLs(args []string) []string {
 		for scanner.Scan() {
 			line := strings.TrimSpace(scanner.Text())
 			if line != "" {
-				urls = append(urls, line)
+				raw = append(raw, line)
 			}
 		}
 	}
 
-	return urls
+	urls := make([]string, 0, len(raw))
+	for _, r := range raw {
+		u, err := validateURL(r)
+		if err != nil {
+			return nil, err
+		}
+		urls = append(urls, u)
+	}
+
+	return urls, nil
 }
